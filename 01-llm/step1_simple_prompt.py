@@ -1,53 +1,28 @@
-from dotenv import load_dotenv   # reads the .env file
-from google import genai          # official Google Gemini SDK
-from google.genai import errors   # NEW: to catch API errors
+# Step 1: Send a simple question to a LOCAL LLM (Ollama) and print the answer + token usage
 
-# 1. Load GEMINI_API_KEY from .env into environment variables
-load_dotenv()
+import ollama   # official Ollama Python library (talks to localhost:11434)
 
-# 2. Create the Gemini client (it reads GEMINI_API_KEY automatically)
-client = genai.Client()
+MODEL = "llama3.2"
 
-# 3. Send the question to the model (with fallback if a model is busy)
-question = "Can i get the detials of Founder of Coherent Pixels System private limited IT Company located in Chennai & Coimbatore?"
+# 1. The question
+question = "Explain the difference between smoke testing and sanity testing in 3 lines."
 
-models_to_try = [
-    "gemini-3.8-flash",
-    "gemini-3.5-flash-lite",
-    "gemini-3.1-flash-lite",
-    "gemini-2.5-flash-lite",
-    "gemma-4-31b-it",
-]
+# 2. Send it to the local model
+response = ollama.chat(
+    model=MODEL,
+    messages=[
+        {"role": "user", "content": question},
+    ],
+)
 
-response = None
-for model_name in models_to_try:
-    try:
-        print(f"Trying model: {model_name}")
-        response = client.models.generate_content(
-            model=model_name,
-            contents=question,
-        )
-        print(f"Success with: {model_name}")
-        break                                   # got an answer, stop trying
-    except errors.APIError as e:
-        if e.code in (429, 500, 503):           # busy / rate limit -> try next model
-            print(f"  {model_name} failed ({e.code}), trying next...")
-        else:
-            raise                               # real error (bad key, wrong name) -> stop
-
-if response is None:
-    raise SystemExit("All models are busy. Try again in a few minutes.")
-
-# 4. Print the answer
-print("\n--- Question ---")
+# 3. Print the answer
+print("--- Question ---")
 print(question)
 print("\n--- Answer ---")
-print(response.text)
+print(response.message.content)
 
-# 5. Print token usage
-usage = response.usage_metadata
+# 4. Print token usage + time taken
 print("\n--- Token usage ---")
-print("Input tokens   :", usage.prompt_token_count)
-print("Output tokens  :", usage.candidates_token_count)
-print("Thinking tokens:", usage.thoughts_token_count)   # may be None
-print("Total tokens   :", usage.total_token_count)
+print("Input tokens :", response.prompt_eval_count)
+print("Output tokens:", response.eval_count)
+print("Total time   :", round(response.total_duration / 1_000_000_000, 2), "seconds")
