@@ -49,6 +49,8 @@ by calling an LLM from Python.
 
 ---
 
+Exercise 1 (Teacher persona): The model switched to a story style with a video game analogy and simple words. Persona changes tone, structure, examples and vocabulary. But a simpler tone slightly changed the meaning (blamed regression on carelessness). Always check accuracy, not just style.
+
 ## Hallucinations I Found Myself
 1. **Jira alternatives (ollama run, terminal):** The model confidently listed TestRail and
    TestLink as "bug tracking systems" (they are test management tools) and said Bamboo

@@ -1,0 +1,498 @@
+{
+  "LOGIN": [
+    {
+      "story_id": "LOGIN-US-1",
+      "title": "User logs in with registered email and password",
+      "as_a": "User",
+      "i_want": "to log in with my registered email and password",
+      "so_that": "I can access my account",
+      "requirement_ids": [
+        "BR-LOGIN-01"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user enters a valid email and password",
+          "when": "the user clicks the login button",
+          "then": "the user is successfully logged in"
+        },
+        {
+          "given": "the user enters an invalid email or password",
+          "when": "the user clicks the login button",
+          "then": "an error message is displayed indicating the login failed"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "LOGIN-US-2",
+      "title": "Password must be 11 to 20 characters and contain at least one ₹ or $ symbol",
+      "as_a": "User",
+      "i_want": "to ensure my password meets the specified criteria",
+      "so_that": "my account remains secure",
+      "requirement_ids": [
+        "BR-LOGIN-02"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user enters a password with 10 characters",
+          "when": "the user clicks the login button",
+          "then": "an error message is displayed indicating the password is too short"
+        },
+        {
+          "given": "the user enters a password with 21 characters",
+          "when": "the user clicks the login button",
+          "then": "an error message is displayed indicating the password is too long"
+        },
+        {
+          "given": "the user enters a password without any ₹ or $ symbol",
+          "when": "the user clicks the login button",
+          "then": "an error message is displayed indicating the password must contain at least one ₹ or $ symbol"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "LOGIN-US-3",
+      "title": "Account is locked after 4 consecutive failed login attempts",
+      "as_a": "User",
+      "i_want": "to prevent unauthorized access to my account",
+      "so_that": "my account remains secure",
+      "requirement_ids": [
+        "BR-LOGIN-03"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user enters an incorrect password 4 times",
+          "when": "the user clicks the login button",
+          "then": "the account is locked"
+        },
+        {
+          "given": "the user enters an incorrect password 5 times",
+          "when": "the user clicks the login button",
+          "then": "the account is locked"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "LOGIN-US-4",
+      "title": "Locked accounts are automatically unlocked after 23 minutes",
+      "as_a": "User",
+      "i_want": "to regain access to my account after a period of inactivity",
+      "so_that": "I can continue using my account",
+      "requirement_ids": [
+        "BR-LOGIN-04"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user's account is locked",
+          "when": "23 minutes pass",
+          "then": "the account is automatically unlocked"
+        },
+        {
+          "given": "the user's account is locked",
+          "when": "22 minutes and 59 seconds pass",
+          "then": "the account remains locked"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "LOGIN-US-5",
+      "title": "A 7-digit OTP is sent to the registered mobile for new device logins. OTP is valid for 90 seconds",
+      "as_a": "User",
+      "i_want": "to receive a one-time password for new device logins",
+      "so_that": "my account remains secure",
+      "requirement_ids": [
+        "BR-LOGIN-05"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user logs in from a new device",
+          "when": "the system sends a 7-digit OTP to the registered mobile",
+          "then": "the user receives the OTP via SMS"
+        },
+        {
+          "given": "the user enters an incorrect OTP 3 times",
+          "when": "the user clicks the login button",
+          "then": "the login attempt fails and the OTP expires after 90 seconds"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "LOGIN-US-6",
+      "title": "Remember Me keeps the user logged in for 9 days",
+      "as_a": "User",
+      "i_want": "to stay logged in for a longer period",
+      "so_that": "I don't have to log in every day",
+      "requirement_ids": [
+        "BR-LOGIN-06"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user checks the 'Remember Me' box",
+          "when": "the user logs in",
+          "then": "the user remains logged in for 9 days"
+        },
+        {
+          "given": "the user unchecks the 'Remember Me' box",
+          "when": "the user logs in",
+          "then": "the user is logged out after 9 days"
+        }
+      ],
+      "status": "Draft"
+    }
+  ],
+  "CART": [
+    {
+      "story_id": "CART-US-1",
+      "title": "Add products to the cart",
+      "as_a": "User",
+      "i_want": "to add up to 15 different products to the cart",
+      "so_that": "I can keep track of items I want to purchase",
+      "requirement_ids": [
+        "BR-CART-01"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user is logged in",
+          "when": "the user adds 15 different products to the cart",
+          "then": "the system allows the addition of all 15 products"
+        },
+        {
+          "given": "the user is logged in",
+          "when": "the user tries to add the 16th product to the cart",
+          "then": "the system prevents the addition and displays a message indicating the maximum limit is reached"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "CART-US-2",
+      "title": "Set quantity for products in the cart",
+      "as_a": "User",
+      "i_want": "to set the quantity for each product in the cart up to 5",
+      "so_that": "I can adjust the quantity of items I want to purchase",
+      "requirement_ids": [
+        "BR-CART-02"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user is logged in",
+          "when": "the user sets the quantity of a product to 5",
+          "then": "the system allows the setting of the quantity to 5"
+        },
+        {
+          "given": "the user is logged in",
+          "when": "the user tries to set the quantity of a product to 6",
+          "then": "the system prevents the setting and displays a message indicating the maximum limit is reached"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "CART-US-3",
+      "title": "Save cart items for 30 days",
+      "as_a": "User",
+      "i_want": "my cart items to be saved for 30 days",
+      "so_that": "I can continue shopping and return to my cart later",
+      "requirement_ids": [
+        "BR-CART-03"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user is logged in",
+          "when": "the user adds items to the cart",
+          "then": "the system saves the cart items for 30 days"
+        },
+        {
+          "given": "the user is logged in",
+          "when": "the user logs out and returns after 31 days",
+          "then": "the system displays a message indicating the cart items have expired"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "CART-US-4",
+      "title": "Handle out of stock products",
+      "as_a": "User",
+      "i_want": "to be notified when a product goes out of stock and moved to 'Saved for later'",
+      "so_that": "I am informed about the status of the product I want to purchase",
+      "requirement_ids": [
+        "BR-CART-04"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user is logged in",
+          "when": "a product goes out of stock",
+          "then": "the system moves the product to 'Saved for later' and notifies the user"
+        },
+        {
+          "given": "the user is logged in",
+          "when": "a product is back in stock",
+          "then": "the system removes the product from 'Saved for later' and updates the cart"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "CART-US-5",
+      "title": "Update cart total instantly",
+      "as_a": "User",
+      "i_want": "the cart total to update instantly when the quantity of a product changes",
+      "so_that": "I can see the correct total at all times",
+      "requirement_ids": [
+        "BR-CART-05"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user is logged in",
+          "when": "the user changes the quantity of a product",
+          "then": "the system updates the cart total instantly"
+        },
+        {
+          "given": "the user is logged in",
+          "when": "the user changes the quantity of a product to 0",
+          "then": "the system removes the product from the cart and updates the total"
+        }
+      ],
+      "status": "Draft"
+    }
+  ],
+  "PAYMENT": [
+    {
+      "story_id": "PAYMENT-US-1",
+      "title": "Support multiple payment methods",
+      "as_a": "User",
+      "i_want": "to be able to choose from UPI, credit card, debit card, and net banking as payment methods",
+      "so_that": "I can complete my purchase using the payment method I prefer",
+      "requirement_ids": [
+        "BR-PAY-01"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user selects UPI as the payment method",
+          "when": "the user completes the payment process",
+          "then": "the payment is processed via UPI"
+        },
+        {
+          "given": "the user selects a payment method other than UPI",
+          "when": "the user completes the payment process",
+          "then": "the payment is processed via the selected method"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "PAYMENT-US-2",
+      "title": "Cash on Delivery for orders below ₹3,000",
+      "as_a": "User",
+      "i_want": "to have the option to pay by cash on delivery for orders below ₹3,000",
+      "so_that": "I can choose this option if I prefer not to use online payment methods",
+      "requirement_ids": [
+        "BR-PAY-02"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user places an order for ₹2,500",
+          "when": "the user selects cash on delivery as the payment method",
+          "then": "the order is placed and the user can pay on delivery"
+        },
+        {
+          "given": "the user places an order for ₹3,500",
+          "when": "the user selects cash on delivery as the payment method",
+          "then": "the order is not placed and the user is informed that COD is not available for this amount"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "PAYMENT-US-3",
+      "title": "Payment session times out after 8 minutes of inactivity",
+      "as_a": "User",
+      "i_want": "the payment session to time out after 8 minutes of inactivity",
+      "so_that": "I am not left waiting indefinitely if I am not actively using the payment process",
+      "requirement_ids": [
+        "BR-PAY-03"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user is on the payment page",
+          "when": "the user does not interact with the page for 8 minutes",
+          "then": "the payment session times out and the user is prompted to start the process again"
+        },
+        {
+          "given": "the user is on the payment page",
+          "when": "the user interacts with the page within 8 minutes",
+          "then": "the payment session does not time out"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "PAYMENT-US-4",
+      "title": "Maximum of 3 retries for failed payments",
+      "as_a": "User",
+      "i_want": "to be able to retry a failed payment a maximum of 3 times per order",
+      "so_that": "I can complete my purchase if the initial payment attempt fails",
+      "requirement_ids": [
+        "BR-PAY-04"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user attempts to make a payment",
+          "when": "the payment fails",
+          "then": "the user is allowed to retry the payment up to 3 times"
+        },
+        {
+          "given": "the user attempts to make a payment",
+          "when": "the payment fails and the user retries 3 times",
+          "then": "the payment is not allowed to be retried further and the user is informed of the failure"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "PAYMENT-US-5",
+      "title": "Order confirmation email sent within 2 minutes of successful payment",
+      "as_a": "User",
+      "i_want": "to receive an order confirmation email within 2 minutes of a successful payment",
+      "so_that": "I can be assured that my order has been placed and is being processed",
+      "requirement_ids": [
+        "BR-PAY-05"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the user makes a successful payment",
+          "when": "the payment is processed",
+          "then": "an order confirmation email is sent within 2 minutes"
+        },
+        {
+          "given": "the user makes a successful payment",
+          "when": "the payment is processed and the email is not sent within 2 minutes",
+          "then": "the user is informed of the delay in sending the confirmation email"
+        }
+      ],
+      "status": "Draft"
+    }
+  ],
+  "REFUND": [
+    {
+      "story_id": "REFUND-US-1",
+      "title": "Request a refund within 10 days of delivery",
+      "as_a": "Customer",
+      "i_want": "to request a refund for an item I received within 10 days of delivery",
+      "so_that": "I can get a refund for the item",
+      "requirement_ids": [
+        "BR-REF-01"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the item was delivered within 10 days",
+          "when": "I request a refund",
+          "then": "the refund request is accepted"
+        },
+        {
+          "given": "the item was delivered more than 10 days ago",
+          "when": "I request a refund",
+          "then": "the refund request is rejected"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "REFUND-US-2",
+      "title": "Process UPI refunds within 3 working days",
+      "as_a": "Customer",
+      "i_want": "to receive a refund for a UPI payment within 3 working days",
+      "so_that": "I can get my money back quickly",
+      "requirement_ids": [
+        "BR-REF-02"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the payment was made via UPI",
+          "when": "I request a refund",
+          "then": "the refund is processed within 3 working days"
+        },
+        {
+          "given": "the payment was not made via UPI",
+          "when": "I request a refund",
+          "then": "the refund is not processed within 3 working days"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "REFUND-US-3",
+      "title": "Process card refunds within 7 working days",
+      "as_a": "Customer",
+      "i_want": "to receive a refund for a card payment within 7 working days",
+      "so_that": "I can get my money back quickly",
+      "requirement_ids": [
+        "BR-REF-03"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "the payment was made via card",
+          "when": "I request a refund",
+          "then": "the refund is processed within 7 working days"
+        },
+        {
+          "given": "the payment was not made via card",
+          "when": "I request a refund",
+          "then": "the refund is not processed within 7 working days"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "REFUND-US-4",
+      "title": "Exclude 'Final Sale' items from refund requests",
+      "as_a": "Customer",
+      "i_want": "to be informed that 'Final Sale' items are not eligible for refunds",
+      "so_that": "I do not waste time requesting a refund for an ineligible item",
+      "requirement_ids": [
+        "BR-REF-04"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "I request a refund for a 'Final Sale' item",
+          "when": "I am informed about the eligibility",
+          "then": "I am informed that the item is not eligible for a refund"
+        },
+        {
+          "given": "I request a refund for a non-'Final Sale' item",
+          "when": "I am informed about the eligibility",
+          "then": "I am informed that the item is eligible for a refund"
+        }
+      ],
+      "status": "Draft"
+    },
+    {
+      "story_id": "REFUND-US-5",
+      "title": "Process partial refunds for multi-item orders",
+      "as_a": "Customer",
+      "i_want": "to receive a partial refund for a multi-item order",
+      "so_that": "I can get a refund for the items I do not want",
+      "requirement_ids": [
+        "BR-REF-05"
+      ],
+      "acceptance_criteria": [
+        {
+          "given": "I request a partial refund for a multi-item order",
+          "when": "the refund is processed",
+          "then": "a partial refund is issued"
+        },
+        {
+          "given": "I request a full refund for a multi-item order",
+          "when": "the refund is processed",
+          "then": "a full refund is not issued"
+        }
+      ],
+      "status": "Draft"
+    }
+  ]
+}

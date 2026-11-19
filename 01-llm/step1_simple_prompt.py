@@ -2,7 +2,7 @@
 
 import ollama   # official Ollama Python library (talks to localhost:11434)
 
-MODEL = "llama3.2"
+MODEL = "qwen2.5:7b"
 
 # 1. The question
 question = "Explain the difference between smoke testing and sanity testing in 3 lines."
