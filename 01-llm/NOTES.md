@@ -126,6 +126,13 @@ Domain knowledge (like QA experience) is needed to catch them.
 
 QA lessons:
 
-For business answers (RAG, BRD rules) → use temperature 0. That’s why tools.py uses temperature=0.
-Even at temperature 0, never use exact-match assertions in AI tests. A model update or another machine can change the wording. Check meaning or key facts instead (e.g. “contains below ₹3,000”).
 
+- For business answers (RAG, BRD rules) → use temperature 0. That’s why tools.py uses temperature=0.
+- Even at temperature 0, never use exact-match assertions in AI tests. A model update or another machine can change the wording. Check meaning or key facts instead (e.g. “contains below ₹3,000”).
+
+
+temparature --> 0 Vs 1
+
+“Step 3 (temperature): temp 0 gave 1 unique answer out of 5 with 5/5 facts correct; temp 1 gave 5 unique answers with 4/5 facts (one lost ‘15’). Higher temperature changes facts, not just wording. A keyword fact-check catches missing facts but not changed meaning.”
+
+86 pytest checks on AI-generated stories (structure, IDs, Given-When-Then). Proved the tests can fail by breaking one story. Structure tests can’t catch wrong meaning.”
