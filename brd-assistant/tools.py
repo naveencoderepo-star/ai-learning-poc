@@ -5,6 +5,7 @@
 # Tool 4: list_stories     -> List saved stories
 
 import json
+import sys
 from pathlib import Path
 from langchain_ollama import OllamaEmbeddings, ChatOllama
 from langchain_chroma import Chroma
@@ -53,7 +54,7 @@ def search_brd(question: str, k: int = 2) -> str:
     """Answer a question using only the ShopEasy BRD."""
     # 1. RETRIEVE: find the k most relevant chunks
     docs = vector_db.similarity_search(question, k=k)
-    print("   [retrieved sections:", [d.metadata.get("section") for d in docs], "]")
+    print("   [retrieved sections:", [d.metadata.get("section") for d in docs], "]", file=sys.stderr)
 
     # 2. AUGMENT: put those chunks into the prompt as context
     context = "\n\n".join(
@@ -99,8 +100,8 @@ def generate_stories(module: str) -> str:
     """Generate user stories with Given-When-Then acceptance criteria for one BRD module."""
     # 1. RETRIEVE: the chunk for this module
     docs = vector_db.similarity_search(f"{module} module requirements", k=1)
-    print("   [retrieved section:", docs[0].metadata.get("section"), "]")
-
+    print("   [retrieved section:", docs[0].metadata.get("section"), "]", file=sys.stderr)
+    
     # 2. AUGMENT + GENERATE as JSON
     messages = [
         ("system", STORY_SYSTEM_PROMPT),

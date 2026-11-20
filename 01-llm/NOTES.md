@@ -123,3 +123,9 @@ Domain knowledge (like QA experience) is needed to catch them.
 - [ ] Step 4 – JSON output + parsing
 - [ ] Step 5 – Hallucination with fake app data
 - [ ] QA twist – pytest check for required JSON fields
+
+QA lessons:
+
+For business answers (RAG, BRD rules) → use temperature 0. That’s why tools.py uses temperature=0.
+Even at temperature 0, never use exact-match assertions in AI tests. A model update or another machine can change the wording. Check meaning or key facts instead (e.g. “contains below ₹3,000”).
+
